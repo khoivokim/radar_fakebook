@@ -14,10 +14,12 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4  # 👈 Hiện tại vẫn dùng v4, chờ update lên v5 khi có
+      uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v5  # 👈 Hiện tại vẫn dùng v5, chờ update lên v6 khi có
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'  # 👈 THÊM DÒNG NÀY
 
     - name: Install dependencies
       run: |
