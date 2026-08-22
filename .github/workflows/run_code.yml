@@ -1,9 +1,13 @@
-name: Auto Run Radar Facebook 1H
+name: Auto Run Radar Facebook 3H
 
 on:
   schedule:
-    - cron: '0 */3 * * *' 
+    - cron: '0 */3 * * *'
   workflow_dispatch:
+
+# 👇 THÊM PHẦN NÀY ĐỂ CẤP QUYỀN
+permissions:
+  contents: write
 
 jobs:
   run-python-script:
