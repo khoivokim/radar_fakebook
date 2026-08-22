@@ -5,7 +5,6 @@ on:
     - cron: '0 */3 * * *'
   workflow_dispatch:
 
-# 👇 THÊM PHẦN NÀY ĐỂ CẤP QUYỀN
 permissions:
   contents: write
 
@@ -15,12 +14,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4  # 👈 Hiện tại vẫn dùng v4, chờ update lên v5 khi có
 
     - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
+      uses: actions/setup-python@v5  # 👈 Hiện tại vẫn dùng v5, chờ update lên v6 khi có
 
     - name: Install dependencies
       run: |
@@ -35,4 +32,4 @@ jobs:
         git config --global user.name "GitHub Action"
         git config --global user.email "action@github.com"
         git add .
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Auto update data" && git push)
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Auto update data $(date +'%Y-%m-%d %H:%M:%S')" && git push)
