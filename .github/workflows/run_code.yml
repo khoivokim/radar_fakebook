@@ -20,7 +20,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install requests beautifulsoup4 pandas opencv-python ultralytics torch
+        pip install requests beautifulsoup4 pandas opencv-python ultralytics torch openpyxl
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
     - name: Execute Python script
