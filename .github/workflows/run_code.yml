@@ -34,4 +34,15 @@ jobs:
         git config --global user.name "GitHub Action"
         git config --global user.email "action@github.com"
         git add .
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Auto update data $(date +'%Y-%m-%d %H:%M:%S')" && git push)
+        # Kiểm tra xem có thay đổi nào để commit không
+        if ! git diff --quiet || ! git diff --staged --quiet; then
+          git commit -m "Auto update data $(date +'%Y-%m-%d %H:%M:%S')"
+          
+          # Kéo code mới nhất từ GitHub về và đặt commit data lên trên đầu
+          git pull --rebase origin main
+          
+          # Đẩy code lên GitHub an toàn
+          git push origin main
+        else
+          echo "No changes to commit"
+        fi
