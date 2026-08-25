@@ -1,0 +1,21 @@
+name: Delete Old Workflow Runs
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Chạy tự động vào 0h mỗi ngày
+  workflow_dispatch: # Cho phép bấm nút chạy thủ công
+
+permissions:
+  actions: write # Cấp quyền xóa lịch sử
+
+jobs:
+  del_runs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          retain_days: 0 # Xóa sạch các bản chạy cũ trước ngày hôm nay
+          keep_minimum_runs: 2 # Giữ lại 5 bản chạy gần nhất để dự phòng lỗi
